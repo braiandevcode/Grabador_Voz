@@ -1,0 +1,222 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    overflow-x: hidden;
+    font-family: sans-serif;
+}
+
+body {
+    width: 100%;
+    /* background: lightslategray; */
+    color: #c96a11;
+}
+
+body,
+main {
+    min-height: 100vh;
+}
+
+/* PARA CONTENEDORES FLEXBOX */
+.d-flex {
+    display: flex;
+}
+
+.f-row {
+    flex-direction: row;
+}
+
+.f-row-r {
+    flex-direction: row-reverse;
+}
+
+.f-col {
+    flex-direction: column;
+}
+
+.f-col-r {
+    flex-direction: column-reverse;
+}
+
+.ai-center {
+    align-items: center;
+}
+
+.ai-end {
+    align-items: end;
+}
+
+.jc-center {
+    justify-content: center;
+}
+
+.jc-between {
+    justify-content: space-between;
+}
+
+.jc-evenly {
+    justify-content: space-evenly;
+}
+
+.jc-around {
+    justify-content: space-around;
+}
+
+.jc-end {
+    justify-content: end;
+}
+
+.titulo-principal {
+    text-align: center;
+}
+
+/* SECCION DE GRABADOR DE AUDIO */
+.grabador-audio__titulo {
+    color: blueviolet;
+}
+
+.grabaciones-container,
+.grabador-audio {
+    width: 100%;
+    padding: .2rem 0;
+}
+
+.caja-audio {
+    width: 100%;
+    height: 100px;
+    max-width: 500px;
+}
+
+.caja-audio__interaccion {
+    width: 80%;
+    margin: 0 auto;
+    padding: 1rem;
+    background: #cecdd1d8;
+    border-radius: 12px;
+}
+
+.caja-audio__sonido {
+    width: 60%;
+    height: 50px;
+
+    border-radius: 10px;
+    padding: .2rem;
+}
+
+.linea-horizontal {
+    width: 90%;
+    height: 1px;
+    background-color: #bfbdc2;
+    transition: all .5s ease-in-out;
+}
+
+.linea-horizontal--recording{
+    background-color: #20afb9;
+}
+
+/* PLAY Y PAUSE*/
+.action-play-pause {
+    cursor: pointer;
+}
+
+.action-play-pause__pause,
+.action-play-pause__play {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-play-pause__pause::before,
+.action-play-pause__pause::after,
+.action-play-pause__play::after {
+    content: "";
+    position: absolute;
+}
+
+
+.action-play-pause__play::after {
+    width: 30%;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 30px solid rgb(250, 181, 31);
+}
+
+.action-play-pause__pause::before,
+.action-play-pause__pause::after {
+    width: 6px;
+    height: 30px;
+    border-radius: .2rem;
+    background: #fab51f;
+}
+
+
+.action-play-pause__pause::before {
+    left: 30%;
+    transform: translateX(-50%);
+}
+
+.action-play-pause__pause::after {
+    left: 70%;
+    transform: translateX(-50%);
+}
+
+/* AUDIO IGNORADO */
+.hidden {
+    display: none;
+}
+
+/* PANEL DE GRABACIONES */
+
+.panel-grabaciones__titulo {
+    color: #333;
+}
+
+.grabaciones-container {
+    width: 100%;
+    max-width: 500px;
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+/* BARRAS DE FRECUENCIA */
+.frequency-bars {
+    width: 100%;
+    display: inline;
+    display: flex;
+    align-items: center; 
+    justify-content:center;
+}
+
+.frequency-bar {
+    height: 0px;
+    max-height: 35px;
+    background-color: #c96a11;
+    transition: height 0.2s ease-in-out;
+}
+
+
+
+
+/* ICONO DE MICROFONO  */
+
+.bi {
+    font-size: 2rem;
+}
+
+.bi-mic {
+    color: #20afb9;
+}
+
+.bi-mic-mute {
+    color: #b40606;
+}
