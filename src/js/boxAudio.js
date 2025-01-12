@@ -11,7 +11,7 @@ const createNewBoxAudio = (db, id, audio, currentTime = 0) => {
   saveDataAudio(db, id, audio, currentTime); // GUARDAMOS DATOS DEL AUDIO Y EL currentTime
 
   const NEW_BOX = D.createElement("div"); // NUEVA CAJA DE AUDIO
-  NEW_BOX.classList.add("caja-audio", "d-flex", "ai-center", "jc-center"); // AÑADIR CLASE "caja-audio"
+  NEW_BOX.classList.add("caja-audio"); // AÑADIR CLASE "caja-audio"
 
   // CONTENIDO DE LA NUEVA CAJA
   const CLONE_BOX_AUDIO = D.createElement("DIV");
@@ -39,7 +39,6 @@ const createNewBoxAudio = (db, id, audio, currentTime = 0) => {
 
   const FRECUENCY_BARS = D.createElement("DIV");
   FRECUENCY_BARS.classList.add("frequency-bars");
-  FRECUENCY_BARS.setAttribute("data-freq", id)
 
   CLONE_LINE_X.append(FRECUENCY_BARS);
 
