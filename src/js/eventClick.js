@@ -115,13 +115,14 @@ const isMobileOrTablet = () => {
 };
 
 const eventClick = () => {
-  D.addEventListener("click", async (e) => {
-    const PARENT = e.target.parentElement; // PADRE DEL ELEMENTO AL CUAL SE HACE EL EVENTO
-    if (!PARENT) return; // AÑADIMOS ESTA LÍNEA PARA EVITAR ERRORES
-    
-    // PRIMER PASO: GRABAR AUDIO (ESCRITORIO)
-    if (!PARENT.hasAttribute("data-audio") && PARENT.matches(".action-play-pause")) {
-      if (!isMobileOrTablet()) { // ESCRITORIO
+  // Solo ejecutamos click si NO es móvil o tablet
+  if (!isMobileOrTablet()) {
+    D.addEventListener("click", async (e) => {
+      const PARENT = e.target.parentElement; // PADRE DEL ELEMENTO AL CUAL SE HACE EL EVENTO
+      if (!PARENT) return; // AÑADIMOS ESTA LÍNEA PARA EVITAR ERRORES
+
+      // PRIMER PASO: GRABAR AUDIO (ESCRITORIO)
+      if (!PARENT.hasAttribute("data-audio") && PARENT.matches(".action-play-pause")) {
         if (e.target.classList.contains("bi-mic-mute")) {
           await startRecorder();
           LINE_X.classList.add("linea-horizontal--recording");
@@ -132,26 +133,26 @@ const eventClick = () => {
           stopRecorder(db);
         }
       }
-    }
 
-    // SEGUNDO PASO: REPRODUCIR AUDIO Y VISUALIZAR FRECUENCIA
-    if (PARENT.hasAttribute("data-audio") && PARENT.matches(".action-play-pause")) {
-      const HASH_AUDIO = PARENT.dataset.audio;
-      const PREVIOUS_ELEMENT = PARENT.previousElementSibling;
-      const LINE_X_SINGLE_AUDIO = PREVIOUS_ELEMENT.querySelector(".linea-horizontal");
+      // SEGUNDO PASO: REPRODUCIR AUDIO Y VISUALIZAR FRECUENCIA
+      if (PARENT.hasAttribute("data-audio") && PARENT.matches(".action-play-pause")) {
+        const HASH_AUDIO = PARENT.dataset.audio;
+        const PREVIOUS_ELEMENT = PARENT.previousElementSibling;
+        const LINE_X_SINGLE_AUDIO = PREVIOUS_ELEMENT.querySelector(".linea-horizontal");
 
-      if (e.target.classList.contains("action-play-pause__play")) {
-        LINE_X_SINGLE_AUDIO.classList.add("linea-horizontal--recording");
-        createBtnPause(PARENT); // CAMBIAR A BOTÓN DE PAUSA EN LA UI
-        handleAudioPlay(PARENT, HASH_AUDIO, LINE_X_SINGLE_AUDIO, e);
+        if (e.target.classList.contains("action-play-pause__play")) {
+          LINE_X_SINGLE_AUDIO.classList.add("linea-horizontal--recording");
+          createBtnPause(PARENT); // CAMBIAR A BOTÓN DE PAUSA EN LA UI
+          handleAudioPlay(PARENT, HASH_AUDIO, LINE_X_SINGLE_AUDIO, e);
+        }
+
+        // SI EL TARGET TIENE LA CLASE DE PAUSA
+        if (e.target.classList.contains("action-play-pause__pause")) {
+          handleAudioPause(PARENT);
+        }
       }
-
-      // SI EL TARGET TIENE LA CLASE DE PAUSA
-      if (e.target.classList.contains("action-play-pause__pause")) {
-        handleAudioPause(PARENT);
-      }
-    }
-  });
+    });
+  }
 
   // LÓGICA PARA GRABACIÓN EN MÓVILES Y TABLETS (TOUCH)
   if (isMobileOrTablet()) {
