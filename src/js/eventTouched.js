@@ -1,3 +1,7 @@
+import { createBtnPause } from "./createIconBtn.js";
+import { handleAudioPause, handleAudioPlay } from "./handle.js";
+import { startRecorder, stopRecorder } from "./recorder.js";
+
 const D = document;
 const eventTouched = (LINE_X, db) => {
   // LOGICA PARA GRABACION EN MOVILES Y TABLETS (TOUCH)
@@ -17,8 +21,30 @@ const eventTouched = (LINE_X, db) => {
       }
     }
 
+    // SEGUNDO PASO: REPRODUCIR AUDIO Y VISUALIZAR FRECUENCIA
+    if (PARENT.hasAttribute("data-audio") && PARENT.matches(".action-play-pause")) {
+        const HASH_AUDIO = PARENT.dataset.audio;
+        const PREVIOUS_ELEMENT = PARENT.previousElementSibling;
+        const LINE_X_SINGLE_AUDIO = PREVIOUS_ELEMENT.querySelector(".linea-horizontal");
+
+        if (e.target.classList.contains("action-play-pause__play")) {
+            LINE_X_SINGLE_AUDIO.classList.add("linea-horizontal--recording");
+            createBtnPause(PARENT); // CAMBIAR A BOTON DE PAUSA EN LA UI
+            handleAudioPlay(
+                PARENT,
+                HASH_AUDIO,
+                LINE_X,
+                LINE_X_SINGLE_AUDIO,
+                dataArray,
+                db
+            );
+        }
+    }
+
     // EVITAR QUE SE DISPIRE UN CLICK ADICIONAL CUANDO TOQUE ES DETECTADO
-    e.preventDefault();
+    if (e.cancelable){
+        e.preventDefault(); // Evitar desplazamiento en la página
+     }
   });
 
   D.addEventListener("touchend", (e) => {
@@ -35,8 +61,34 @@ const eventTouched = (LINE_X, db) => {
       }
     }
 
+    // SEGUNDO PASO: REPRODUCIR AUDIO Y VISUALIZAR FRECUENCIA
+    if (PARENT.hasAttribute("data-audio") && PARENT.matches(".action-play-pause")) {
+        handleAudioPause(PARENT);
+    }
+
     // EVITAR QUE SE DISPIRE UN CLICK ADICIONAL CUANDO TOQUE ES DETECTADO
-    e.preventDefault();
+    if (e.cancelable){
+        e.preventDefault(); // Evitar desplazamiento en la página
+     }
+  });
+
+  // Opcionalmente, puedes añadir un evento 'touchmove' si quieres que el toque
+  // se considere solo si el dedo está sobre el icono del micrófono y no se mueve
+  D.addEventListener("touchmove", (e) => {
+    const PARENT = e.target.parentElement;
+    if (!PARENT) return;
+
+    // Solo continua la grabación si el dedo no se ha movido fuera del área
+    if (touchInProgress && !PARENT.matches(".action-play-pause")) {
+      touchInProgress = false; // Detener la grabación si el dedo se mueve fuera
+      LINE_X.classList.remove("linea-horizontal--recording");
+      e.target.classList.replace("bi-mic", "bi-mic-mute");
+      stopRecorder(db);
+    }
+
+    if (e.cancelable){
+       e.preventDefault(); // Evitar desplazamiento en la página
+    }
   });
 };
 
