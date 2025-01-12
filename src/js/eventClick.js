@@ -1,11 +1,8 @@
 import { createBtnPause, createBtnPlay } from "./createIconBtn.js";
+import { handleAudioPause, handleAudioPlay } from "./handle.js";
 import { startRecorder, stopRecorder } from "./recorder.js";
 
 const D = document;
-const db = []; // SIMULADOR BASE DE DATOS
-let currentAudio = null; // VARIABLE PARA ALMACENAR AUDIO QUE SE REPRODUCE
-let audioContext = null; // INICIALIZAMOS LA VARIABLE AUDIOCONTEXT COMO NULL
-let analyser = null; // INICIALIZAMOS LA VARIABLE ANALYZER COMO NULL
 let dataArray = null; // PARA ALMACENAR LOS DATOS DE FRECUENCIA
 let isAudioPlaying = false;
 
