@@ -40,11 +40,9 @@ const eventTouched = (LINE_X, db) => {
             );
         }
     }
-
     // EVITAR QUE SE DISPIRE UN CLICK ADICIONAL CUANDO TOQUE ES DETECTADO
-    if (e.cancelable){
-        e.preventDefault(); // Evitar desplazamiento en la página
-     }
+    e.preventDefault();
+     
   });
 
   D.addEventListener("touchend", (e) => {
@@ -67,13 +65,10 @@ const eventTouched = (LINE_X, db) => {
     }
 
     // EVITAR QUE SE DISPIRE UN CLICK ADICIONAL CUANDO TOQUE ES DETECTADO
-    if (e.cancelable){
-        e.preventDefault(); // Evitar desplazamiento en la página
-     }
+    e.preventDefault();
+     
   });
 
-  // Opcionalmente, puedes añadir un evento 'touchmove' si quieres que el toque
-  // se considere solo si el dedo está sobre el icono del micrófono y no se mueve
   D.addEventListener("touchmove", (e) => {
     const PARENT = e.target.parentElement;
     if (!PARENT) return;
@@ -86,9 +81,8 @@ const eventTouched = (LINE_X, db) => {
       stopRecorder(db);
     }
 
-    if (e.cancelable){
-       e.preventDefault(); // Evitar desplazamiento en la página
-    }
+    // EVITAR QUE SE DISPIRE UN CLICK ADICIONAL CUANDO TOQUE ES DETECTADO
+    e.preventDefault();
   });
 };
 
