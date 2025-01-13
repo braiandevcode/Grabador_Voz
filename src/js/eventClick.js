@@ -1,5 +1,4 @@
-import { createBtnPause, createBtnPlay } from "./createIconBtn.js";
-import { handleAudioPause, handleAudioPlay } from "./handle.js";
+import { createBtnPause } from "./createIconBtn.js";
 import { handleAudioPause, handleAudioPlay } from "./handle.js";
 import { startRecorder, stopRecorder } from "./recorder.js";
 
