@@ -10,17 +10,17 @@
 </head>
 
 <body>
-    <h1 class="titulo-principal">Grabador de voz</h1>
+    <h1 class="title-main">Grabador de voz</h1>
     <main>
         <!-- SECCION GRABADOR AUDIO -->
-        <section class="grabador-audio d-flex f-col ai-center">
-            <h4 class="grabador-audio__titulo">¡Graba tu audio ahora!</h4>
-            <div class="caja-audio d-flex ai-center jc-center">
-                <div class="caja-audio__interaccion d-flex ai-center jc-center jc-evenly">
-                    <div class="caja-audio__sonido d-flex ai-center jc-center">
-                        <div class="linea-horizontal"></div>
+        <section class="recorder-audio d-flex f-col ai-center">
+            <h4 class="recorder-audio__title">¡Graba tu audio ahora!</h4>
+            <div class="box-audio d-flex ai-center jc-center">
+                <div class="box-audio__interaction d-flex ai-center jc-center jc-evenly">
+                    <div class="box-audio_sound d-flex ai-center jc-center">
+                        <div class="line-x"></div>
                     </div>
-                    <div class="action-play-pause">
+                    <div class="action">
                         <i class="bi bi-mic-mute"></i>
                     </div>
                 </div>
@@ -28,9 +28,9 @@
         </section>
         <hr>
         <!-- PANEL DE GRABACIONES -->
-        <section class="panel-grabaciones d-flex f-col ai-center">
-            <h4 class="panel-grabaciones__titulo">Grabaciones</h4>
-            <div class="grabaciones-container"></div>
+        <section class="panel-recorders d-flex f-col ai-center">
+            <h4 class="panel-recorders__title">Grabaciones</h4>
+            <div class="recorders-container"></div>
         </section>
     </main>
     <audio id="audio" class="hidden" controls></audio>

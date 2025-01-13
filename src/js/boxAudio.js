@@ -1,5 +1,5 @@
 const D = document;
-const recorderContainer = D.querySelector(".grabaciones-container"); // CONTENEDOR DE GRABACIONES
+const recorderContainer = D.querySelector(".recorders-container"); // CONTENEDOR DE GRABACIONES
 // FUNCION PARA GUARDAR EL AUDIO EN ARRAY
 const saveDataAudio = (db, id, audio, currentTime = 0) => {
   db.push({ id, audio, currentTime }); // AHORA GUARDAMOS EL currentTime
@@ -11,12 +11,12 @@ const createNewBoxAudio = (db, id, audio, currentTime = 0) => {
   saveDataAudio(db, id, audio, currentTime); // GUARDAMOS DATOS DEL AUDIO Y EL currentTime
 
   const NEW_BOX = D.createElement("div"); // NUEVA CAJA DE AUDIO
-  NEW_BOX.classList.add("caja-audio", "d-flex", "ai-center", "jc-center"); // AÑADIR CLASE "caja-audio"
+  NEW_BOX.classList.add("box-audio", "d-flex", "ai-center", "jc-center"); // AÑADIR CLASE "box-audio"
 
   // CONTENIDO DE LA NUEVA CAJA
   const CLONE_BOX_AUDIO = D.createElement("DIV");
   CLONE_BOX_AUDIO.classList.add(
-    "caja-audio__interaccion",
+    "box-audio__interaction",
     "d-flex",
     "ai-center",
     "jc-evenly"
@@ -24,7 +24,7 @@ const createNewBoxAudio = (db, id, audio, currentTime = 0) => {
 
   const CLONE_BOX_AUDIO_SONIDO = D.createElement("DIV");
   CLONE_BOX_AUDIO_SONIDO.classList.add(
-    "caja-audio__sonido",
+    "box-audio_sound",
     "d-flex",
     "ai-center",
     "jc-center"
@@ -34,7 +34,7 @@ const createNewBoxAudio = (db, id, audio, currentTime = 0) => {
     "d-flex",
     "ai-center",
     "jc-center",
-    "linea-horizontal"
+    "line-x"
   );
 
   const FRECUENCY_BARS = D.createElement("DIV");
@@ -46,11 +46,11 @@ const createNewBoxAudio = (db, id, audio, currentTime = 0) => {
   CLONE_BOX_AUDIO_SONIDO.append(CLONE_LINE_X);
 
   const CLONE_BOX_AUDIO_ACTIONS = D.createElement("DIV");
-  CLONE_BOX_AUDIO_ACTIONS.classList.add("action-play-pause");
+  CLONE_BOX_AUDIO_ACTIONS.classList.add("action");
   CLONE_BOX_AUDIO_ACTIONS.setAttribute("data-audio", id);
 
   const CLON_PLAY_PAUSE = D.createElement("DIV");
-  CLON_PLAY_PAUSE.classList.add("action-play-pause__play");
+  CLON_PLAY_PAUSE.classList.add("action__play");
 
   CLONE_BOX_AUDIO_ACTIONS.append(CLON_PLAY_PAUSE);
 

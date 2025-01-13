@@ -1,6 +1,7 @@
 import eventClick from "./js/eventClick.js";
+const db=[];
 const app = ()=> {
-    eventClick();
+    eventClick(db);
 }
 
 export default app;
