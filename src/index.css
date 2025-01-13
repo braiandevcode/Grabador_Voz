@@ -170,11 +170,6 @@ main {
     transform: translateX(-50%);
 }
 
-/* AUDIO IGNORADO */
-.hidden {
-    display: none;
-}
-
 /* PANEL DE GRABACIONES */
 .panel-recorders__title {
     color: #333;

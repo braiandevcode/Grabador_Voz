@@ -39,6 +39,8 @@ const createNewBoxAudio = (db, id, audio, currentTime = 0) => {
 
   const FRECUENCY_BARS = D.createElement("DIV");
   FRECUENCY_BARS.classList.add("frequency-bars");
+  FRECUENCY_BARS.setAttribute("data-freq", id);
+
 
   CLONE_LINE_X.append(FRECUENCY_BARS);
 
