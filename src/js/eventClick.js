@@ -1,5 +1,6 @@
 import { createBtnPause, createBtnPlay } from "./createIconBtn.js";
 import { handleAudioPause, handleAudioPlay } from "./handle.js";
+import { handleAudioPause, handleAudioPlay } from "./handle.js";
 import { startRecorder, stopRecorder } from "./recorder.js";
 
 const D = document;
